@@ -43,40 +43,54 @@ st.set_page_config(
 
 CUSTOM_CSS = """
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-    --bg: #0F1023;
-    --surface: #171A35;
-    --surface-2: #1F2347;
-    --accent: #8B5CF6;
-    --accent-2: #22D3EE;
-    --spark: #F472B6;
-    --text: #E8E6F5;
-    --text-dim: #A6A3C9;
+    --bg: #0A0B1A;
+    --surface: #1B1E42;
+    --surface-2: #262A5C;
+    --accent: #A78BFA;
+    --accent-2: #5EEAD4;
+    --spark: #FB7BB5;
+    --text: #FFFFFF;
+    --text-dim: #C7C5E8;
+    --border: rgba(167, 139, 250, 0.45);
 }
 
+/* Base */
 html, body, [class*="css"]  {
     font-family: 'Inter', sans-serif;
-    color: var(--text);
+    color: var(--text) !important;
+    font-size: 1rem;
 }
 
 .stApp {
-    background: radial-gradient(circle at 15% 0%, #1B1E44 0%, #0F1023 45%),
+    background: radial-gradient(circle at 15% 0%, #201F52 0%, #0A0B1A 45%),
                 var(--bg);
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', sans-serif !important;
     letter-spacing: -0.01em;
+    color: var(--text) !important;
+}
+
+p, span, li, label, .stMarkdown, .stCaption, div[data-testid="stMarkdownContainer"] {
+    color: var(--text) !important;
+}
+
+/* Captions (used for helper text) get a lighter but still legible tone */
+.stCaption, [data-testid="stCaptionContainer"], small {
+    color: var(--text-dim) !important;
+    opacity: 1 !important;
 }
 
 /* Hero title with animated synapse gradient */
 .brainy-hero {
     padding: 1.6rem 2rem;
     border-radius: 18px;
-    background: linear-gradient(135deg, #1B1E44 0%, #21254F 60%, #191C3E 100%);
-    border: 1px solid rgba(139, 92, 246, 0.25);
+    background: linear-gradient(135deg, #23255C 0%, #2B2E68 60%, #1E2050 100%);
+    border: 1px solid var(--border);
     margin-bottom: 1.4rem;
     position: relative;
     overflow: hidden;
@@ -87,49 +101,50 @@ h1, h2, h3 {
     position: absolute;
     top: -60%; right: -20%;
     width: 260px; height: 260px;
-    background: radial-gradient(circle, rgba(34,211,238,0.25) 0%, rgba(34,211,238,0) 70%);
+    background: radial-gradient(circle, rgba(94,234,212,0.30) 0%, rgba(94,234,212,0) 70%);
     pointer-events: none;
 }
 
 .brainy-title {
-    font-size: 2.1rem;
+    font-size: 2.2rem;
     font-weight: 700;
     background: linear-gradient(90deg, var(--accent-2), var(--accent) 55%, var(--spark));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 0.15rem;
+    margin-bottom: 0.3rem;
 }
 
 .brainy-subtitle {
-    color: var(--text-dim);
-    font-size: 0.98rem;
-    max-width: 620px;
+    color: #F1F0FF !important;
+    font-size: 1rem;
+    line-height: 1.55;
+    max-width: 640px;
 }
 
 /* Synapse divider */
 .synapse-divider {
-    height: 2px;
+    height: 3px;
     margin: 1.6rem 0 1.2rem 0;
     background: linear-gradient(90deg, transparent, var(--accent) 15%, var(--accent-2) 50%, var(--spark) 85%, transparent);
     border-radius: 999px;
-    opacity: 0.75;
+    opacity: 0.9;
 }
 
 /* Section eyebrow labels */
 .eyebrow {
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    font-size: 0.72rem;
-    color: var(--accent-2);
-    font-weight: 600;
-    margin-bottom: 0.2rem;
+    font-size: 0.8rem;
+    color: var(--accent-2) !important;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
 }
 
 /* Metric-style cards */
 .brain-card {
     background: var(--surface);
-    border: 1px solid rgba(139, 92, 246, 0.18);
+    border: 1px solid var(--border);
     border-radius: 14px;
     padding: 1rem 1.2rem;
     height: 100%;
@@ -137,49 +152,137 @@ h1, h2, h3 {
 
 .brain-card .value {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     font-weight: 700;
-    color: var(--text);
+    color: var(--text) !important;
 }
 
 .brain-card .label {
-    color: var(--text-dim);
-    font-size: 0.82rem;
-    margin-top: 0.1rem;
+    color: var(--text-dim) !important;
+    font-size: 0.85rem;
+    margin-top: 0.15rem;
+    font-weight: 500;
 }
 
+/* Sidebar */
 section[data-testid="stSidebar"] {
-    background: #12142C;
-    border-right: 1px solid rgba(139, 92, 246, 0.15);
+    background: #101230;
+    border-right: 1px solid var(--border);
+}
+section[data-testid="stSidebar"] * {
+    color: var(--text) !important;
 }
 
+/* Buttons */
 .stButton>button {
     background: linear-gradient(90deg, var(--accent), var(--accent-2));
-    color: #0F1023;
-    font-weight: 600;
+    color: #0A0B1A !important;
+    font-weight: 700;
     border: none;
     border-radius: 10px;
-    padding: 0.5rem 1.2rem;
+    padding: 0.55rem 1.2rem;
 }
-
 .stButton>button:hover {
-    filter: brightness(1.08);
-    color: #0F1023;
+    filter: brightness(1.12);
+    color: #0A0B1A !important;
+}
+.stButton>button p {
+    color: #0A0B1A !important;
+    font-weight: 700;
 }
 
+/* Tabs */
 .stTabs [data-baseweb="tab-list"] {
     gap: 6px;
 }
 .stTabs [data-baseweb="tab"] {
     background-color: var(--surface);
     border-radius: 10px 10px 0 0;
-    padding: 0.5rem 1rem;
-    color: var(--text-dim);
+    padding: 0.55rem 1.1rem;
+}
+.stTabs [data-baseweb="tab"] p {
+    color: var(--text-dim) !important;
+    font-weight: 600;
 }
 .stTabs [aria-selected="true"] {
-    color: var(--text) !important;
     background-color: var(--surface-2) !important;
-    border-bottom: 2px solid var(--accent-2);
+    border-bottom: 3px solid var(--accent-2);
+}
+.stTabs [aria-selected="true"] p {
+    color: var(--text) !important;
+}
+
+/* Selectboxes, dropdowns, text inputs, file uploader */
+div[data-baseweb="select"] > div,
+.stTextInput input,
+.stNumberInput input {
+    background-color: var(--surface) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text) !important;
+}
+div[data-baseweb="select"] span {
+    color: var(--text) !important;
+}
+ul[role="listbox"] {
+    background-color: var(--surface-2) !important;
+}
+ul[role="listbox"] li {
+    color: var(--text) !important;
+}
+ul[role="listbox"] li:hover {
+    background-color: var(--accent) !important;
+    color: #0A0B1A !important;
+}
+
+[data-testid="stFileUploaderDropzone"] {
+    background-color: var(--surface) !important;
+    border: 1.5px dashed var(--border) !important;
+}
+[data-testid="stFileUploaderDropzone"] * {
+    color: var(--text) !important;
+}
+[data-testid="stFileUploaderDropzoneInstructions"] svg {
+    fill: var(--accent-2) !important;
+}
+
+/* Dataframes / tables */
+[data-testid="stDataFrame"] {
+    background-color: var(--surface) !important;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+}
+[data-testid="stDataFrame"] * {
+    color: var(--text) !important;
+}
+
+/* Alert boxes (info / success / error / warning) */
+div[data-testid="stAlert"] {
+    background-color: var(--surface-2) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 10px;
+}
+div[data-testid="stAlert"] * {
+    color: var(--text) !important;
+}
+div[data-testid="stAlert"] svg {
+    fill: var(--accent-2) !important;
+}
+
+/* Metric widgets */
+[data-testid="stMetricValue"], [data-testid="stMetricLabel"] {
+    color: var(--text) !important;
+}
+
+/* Code blocks */
+code, pre, .stCodeBlock, pre[class*="language-"] {
+    background-color: var(--surface) !important;
+    color: #E8FFF7 !important;
+}
+
+/* Links */
+a, a:visited {
+    color: var(--accent-2) !important;
+    text-decoration: underline;
 }
 </style>
 """
