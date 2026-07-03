@@ -245,6 +245,28 @@ ul[role="listbox"] li:hover {
     fill: var(--accent-2) !important;
 }
 
+/* "Browse files" button inside the uploader — always visible, not just on hover */
+[data-testid="stFileUploaderDropzone"] button,
+[data-testid="stFileUploader"] section button {
+    background: linear-gradient(90deg, var(--accent), var(--accent-2)) !important;
+    color: #0A0B1A !important;
+    border: none !important;
+    font-weight: 700 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+[data-testid="stFileUploaderDropzone"] button p,
+[data-testid="stFileUploader"] section button p,
+[data-testid="stFileUploaderDropzone"] button span,
+[data-testid="stFileUploader"] section button span {
+    color: #0A0B1A !important;
+    opacity: 1 !important;
+}
+[data-testid="stFileUploaderDropzone"] button:hover,
+[data-testid="stFileUploader"] section button:hover {
+    filter: brightness(1.12);
+}
+
 /* Dataframes / tables */
 [data-testid="stDataFrame"] {
     background-color: var(--surface) !important;
